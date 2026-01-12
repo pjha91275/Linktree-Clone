@@ -202,7 +202,6 @@ const Generate = () => {
                 <div className="absolute top-2 w-full flex justify-between px-6 text-[10px] font-bold text-gray-800 opacity-60">
                   <span>9:41</span>
                   <div className="flex gap-1">
-                    <span>Signal</span>
                     <span>Wifi</span>
                     <span>Batt</span>
                   </div>
