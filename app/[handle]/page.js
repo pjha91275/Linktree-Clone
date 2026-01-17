@@ -5,16 +5,6 @@ import { notFound } from "next/navigation";
 export default async function Page({ params }) {
   const { handle } = await params;   
 
-  //  // 🔴 BLOCK junk traffic immediately
-  // if (
-  //   !handle ||
-  //   handle.length < 3 ||
-  //   handle.length > 30 ||
-  //   !/^[a-z0-9]+$/i.test(handle)
-  // ) {
-  //   return notFound();
-  // }
-
   const normalizedHandle = handle.trim().toLowerCase();
   const client = await clientPromise;
   const db = client.db("Linktree")

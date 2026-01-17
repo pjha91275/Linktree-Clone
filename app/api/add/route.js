@@ -5,18 +5,6 @@ export async function POST(request) {
 
   const rawHandle = body.handle;
 
-  // if (
-  //   !rawHandle ||
-  //   rawHandle.length < 3 ||
-  //   rawHandle.length > 30 ||
-  //   !/^[a-z0-9]+$/i.test(rawHandle)
-  // ) {
-  //   return Response.json(
-  //     { success: false, error: true, message: "Invalid handle" },
-  //     { status: 400 }
-  //   );
-  // }
-
   const handle = rawHandle.toLowerCase();
 
   const client = await clientPromise;
