@@ -4,9 +4,17 @@ import { notFound } from "next/navigation";
 
 export default async function Page({ params }) {
   const { handle } = await params;   
-  if (!handle) {
-    return notFound()
+
+   // 🔴 BLOCK junk traffic immediately
+  if (
+    !handle ||
+    handle.length < 3 ||
+    handle.length > 30 ||
+    !/^[a-z0-9]+$/i.test(handle)
+  ) {
+    return notFound();
   }
+
   const normalizedHandle = handle.trim().toLowerCase();
   const client = await clientPromise;
   const db = client.db("Linktree")
@@ -14,6 +22,10 @@ export default async function Page({ params }) {
 
   // If the handle is already claimed, you cannot create the Linktree
   const item = await collection.findOne({ handle: normalizedHandle })
+
+  if (!item) {
+    return notFound();
+  }
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 justify-center items-center py-10 px-4">
